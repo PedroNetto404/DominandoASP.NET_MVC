@@ -1,0 +1,31 @@
+﻿@using Microsoft.AspNetCore.Server.Kestrel.Core.Internal.Http
+@model ASPNET_MVC5_DEV_IO.Application.ViewModels.FornecedorViewModel
+
+@{
+    ViewData["Title"] = "Atualizar Endereço";
+}
+
+<div class="modal-header">
+    <h4 class="modal-title"@ViewData["Title"]></h4>
+    <button type="button" class="close" data-dismiss="modal">
+        <span aria-hidden="true">x</span><span class="sr-only">Fechar</span>
+    </button>
+</div>
+<br/><br/>
+@using (Html.BeginForm(HttpMethod.Patch))
+{
+    @Html.AntiForgeryToken()
+    <div class="form-horizontal col-md-offset-1">
+        @Html.HiddenFor(modal => modal.Endereco.FornecedorId)
+        @Html.HiddenFor(model => model.Endereco.Id)
+        
+        @await Html.PartialAsync("_Endereco")
+        
+        <div class="modal-footer">
+            <div class="col-md-offset-2 col-md-100">
+                <input type="submit" value="Atualizar Endereco" class="btn btn-sucess"/>
+                <input type="button" class="btn btn-info" value="Fechar" data-dismiss="modal"/>
+            </div>
+        </div>
+    </div>
+}

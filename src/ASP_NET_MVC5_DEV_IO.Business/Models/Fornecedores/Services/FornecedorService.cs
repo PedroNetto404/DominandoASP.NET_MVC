@@ -5,23 +5,33 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ASP_NET_MVC5_DEV_IO.Business.Core.Notificacoes;
+using ASP_NET_MVC5_DEV_IO.Business.Models.Fornecedores.DataAbstraction;
+using ASP_NET_MVC5_DEV_IO.Business.Models.Fornecedores.Entidades;
 
 namespace ASP_NET_MVC5_DEV_IO.Business.Models.Fornecedores.Services
 {
-    internal class FornecedorService : BaseService,IFornecedorService
+    public class FornecedorService : BaseService,IFornecedorService
     {
         private readonly IFornecedorRepository _fornecedorRepository;
         private readonly IEnderecoRepository _enderecoRepository;
 
-        public FornecedorService(IFornecedorRepository fornecedorRepository, IEnderecoRepository enderecoRepository)
+        public FornecedorService(
+            IFornecedorRepository fornecedorRepository, 
+            IEnderecoRepository enderecoRepository, 
+            INotificador notificador
+         ) : base(notificador)
         {
             _enderecoRepository = enderecoRepository;
             _fornecedorRepository = fornecedorRepository; 
         }
         public async Task Adicionar(Fornecedor fornecedor)
         {
+            fornecedor.Endereco.Id = fornecedor.Id; 
+            fornecedor.Endereco.FornecedorId = fornecedor.Id;
+            
             if (!(ExecutarValidacao(fornecedor, new FornecedorValidation())
-                && ExecutarValidacao(fornecedor.Endereco, new EnderecoValidation()))) 
+                  && ExecutarValidacao(fornecedor.Endereco, new EnderecoValidation()))) 
                 return;
 
             if (await ExisteFornecedor(fornecedor)) return; 
@@ -48,7 +58,11 @@ namespace ASP_NET_MVC5_DEV_IO.Business.Models.Fornecedores.Services
         {
             var fornecedor = await _fornecedorRepository.ObterFornecedorProdutosEndereco(fornecedorId);
 
-            if (fornecedor.Produtos.Any()) return; 
+            if (fornecedor.Produtos.Any())
+            {
+                Notificar("O fornecedor possui produtos cadastrados");
+                return;
+            }
 
             if(fornecedor.Endereco != null)
             {
@@ -65,7 +79,12 @@ namespace ASP_NET_MVC5_DEV_IO.Business.Models.Fornecedores.Services
         private async Task<bool> ExisteFornecedor(Fornecedor fornecedor) 
         {
             var forn = await _fornecedorRepository.Buscar(f => f.Documento == fornecedor.Documento && fornecedor.Id != fornecedor.Id);
-            return forn.Any(); 
+
+            if (!forn.Any()) return false;
+            
+            Notificar("Já existe um fornecedor com este documento informado");
+            
+            return true; 
         }
     }
 }

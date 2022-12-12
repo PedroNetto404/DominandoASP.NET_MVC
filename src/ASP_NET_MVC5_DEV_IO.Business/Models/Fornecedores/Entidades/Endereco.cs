@@ -1,11 +1,6 @@
 ﻿using ASP_NET_MVC5_DEV_IO.Business.Core.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace ASP_NET_MVC5_DEV_IO.Business.Models.Fornecedores
+namespace ASP_NET_MVC5_DEV_IO.Business.Models.Fornecedores.Entidades
 {
     public class Endereco : Entity
     {

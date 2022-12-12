@@ -1,7 +1,8 @@
 ﻿using ASP_NET_MVC5_DEV_IO.Business.Core.Models;
 using ASP_NET_MVC5_DEV_IO.Business.Models.Fornecedores;
+using ASP_NET_MVC5_DEV_IO.Business.Models.Fornecedores.Entidades;
 
-namespace ASP_NET_MVC5_DEV_IO.Business.Models.Produtos
+namespace ASP_NET_MVC5_DEV_IO.Business.Models.Produtos.Entidades
 {
     public class Produto : Entity   
     {

@@ -1,0 +1,74 @@
+﻿@model ASPNET_MVC5_DEV_IO.Application.ViewModels.ProdutoViewModel
+
+@{
+    ViewBag.Title = "Cadastro de Fornecedor";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<hr/>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <partial name="_ErrorSummary"/>
+        
+        <div class="form-group">
+            @Html.LabelFor(model => model.FornecedorId, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-3">
+
+                @Html.DropDownListFor(model => model.FornecedorId, new SelectList(Model.Fornecedores, "Id", "Nome"),
+                    string.Empty, new { @class = "form-control" })
+
+                @Html.ValidationMessageFor(model => model.FornecedorId, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Nome, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-3">
+                @Html.EditorFor(model => model.Nome, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Nome, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Descricao, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-3">
+                @Html.EditorFor(model => model.Descricao, "", new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Descricao, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.ImagemFile, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-3">
+                <input type="file" asp-for="ImagemFile"/>
+                <span class="input-group-btn"></span>
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Ativo, htmlAttributes: new { @class = "controllabel col-md-2" })
+            <div class="col-md-3">
+                @Html.CheckBoxFor(model => model.Ativo, htmlAttributes: new { @class = "form-control" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-3">
+                <input type="submit" value="Cadastrar" class="btn btn-primary"/>
+                <a class="btn btn-info" href="@Url.Action("Index", "Produtos")">Voltar</a>
+            </div>
+        </div>
+    </div>
+}
+
+@section Scripts
+{
+    <script>
+        $("#Valor").attr("data-val-number", "Moeda em formato inválido."); 
+    </script>
+}

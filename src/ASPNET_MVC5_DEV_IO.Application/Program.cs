@@ -1,4 +1,6 @@
 using ASP_NET_MVC5_DEV_IO.Infrastructure.Data.Context;
+using ASPNET_MVC5_DEV_IO.Application.Configurations;
+using ASPNET_MVC5_DEV_IO.Application.Extensions;
 using Microsoft.EntityFrameworkCore;
 
 namespace ASPNET_MVC5_DEV_IO.Application
@@ -7,16 +9,18 @@ namespace ASPNET_MVC5_DEV_IO.Application
     {
         public static void Main(string[] args)
         {
+            CultureConfig.RegisterCulture();
+            
             var builder = WebApplication.CreateBuilder(args);
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
-
+            builder.Services.AddAutoMapper(typeof(AutoMapperProfile).Assembly);
             builder.Services.AddDbContext<MeuDbContext>(options =>
             {
                 options.UseSqlServer(builder.Configuration.GetConnectionString("Default"));
             }); 
-
+            builder.Services.AddDependencyInjection(); 
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
@@ -36,7 +40,7 @@ namespace ASPNET_MVC5_DEV_IO.Application
 
             app.MapControllerRoute(
                 name: "default",
-                pattern: "{controller=Home}/{action=Index}/{id?}");
+                pattern: "{controller=Fornecedores}/{action=Index}/{id?}");
 
             app.Run();
         }

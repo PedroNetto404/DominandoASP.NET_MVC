@@ -1,0 +1,16 @@
+﻿@model System.Collections.Generic.IEnumerable<ASPNET_MVC5_DEV_IO.Application.ViewModels.ProdutoViewModel>
+
+@{
+    ViewBag.Title = "Lista de Produtos";
+}
+
+<h1><b>@ViewBag.Title</b></h1>
+<hr/>
+
+<p>
+    <a class="btn btn-info" href="@Url.Action("Create", "Produtos")">
+        Novo Produto
+    </a>
+</p>
+
+@await  Html.PartialAsync("_ListaProdutos"); 

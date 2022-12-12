@@ -1,4 +1,5 @@
 ﻿using ASP_NET_MVC5_DEV_IO.Business.Models.Fornecedores;
+using ASP_NET_MVC5_DEV_IO.Business.Models.Fornecedores.Entidades;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 

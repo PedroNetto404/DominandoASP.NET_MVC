@@ -1,0 +1,59 @@
+﻿@model ASPNET_MVC5_DEV_IO.Application.ViewModels.FornecedorViewModel
+
+<div class="row">
+    <div class="form-group">
+        @Html.LabelFor(model => model.Endereco.CEP, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-3">
+            @Html.EditorFor(model => model.Endereco.CEP, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.Endereco.CEP, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Endereco.Logradouro, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-3">
+            @Html.EditorFor(model => model.Endereco.Logradouro, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.Endereco.Logradouro, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Endereco.Numero, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-3">
+            @Html.EditorFor(model => model.Endereco.Numero, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.Endereco.Numero, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    
+    <div class="form-group">
+        @Html.LabelFor(model => model.Endereco.Complemento, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-3">
+            @Html.EditorFor(model => model.Endereco.Complemento, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.Endereco.Complemento, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    
+    <div class="form-group">
+        @Html.LabelFor(model => model.Endereco.Bairro, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-3">
+            @Html.EditorFor(model => model.Endereco.Bairro, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.Endereco.Bairro, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    
+    <div class="form-group">
+        @Html.LabelFor(model => model.Endereco.Cidade, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-3">
+            @Html.EditorFor(model => model.Endereco.Cidade, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.Endereco.Cidade, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    
+    <div class="form-group">
+        @Html.LabelFor(model => model.Endereco.Estado, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-3">
+            @Html.EditorFor(model => model.Endereco.Estado, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.Endereco.Estado, "", new { @class = "text-danger" })
+        </div>
+    </div>
+</div>
